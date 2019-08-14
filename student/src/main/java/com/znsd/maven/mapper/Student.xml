@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znsd.maven.dao.StudentDao">
+
+	<resultMap type="com.znsd.maven.entity.Student" id="student">
+		<id column="stuId" property="stuId" />
+		<result column="stuName" property="stuName" />
+		<result column="stuSex" property="stuSex" />
+		<result column="stuAge" property="stuAge" />
+		<!-- 多对一映射年级关系 -->
+		<association property="clazz"
+			javaType="com.znsd.maven.entity.Clazz">
+			<id property="clsId" column="clsId" />
+			<result property="clsName" column="clsName" />
+		</association>
+	</resultMap>
+
+	<!-- 查询所有的信息 -->
+	<select id="selectStudentList" resultMap="student">
+		select * from student
+	</select>
+	
+	<select id="selectStudentLimit" parameterType="Integer" resultMap="student">
+		select s.*,	c.clsName from student s INNER JOIN classdb c on s.clsId=c.clsId order by s.stuId DESC  limit #{page},#{pageSize}
+	</select>
+	
+	<insert id="addStudent" parameterType="student">
+		insert into student(stuName,stuAge,stuSex,clsId) values(#{stuName},#{stuAge},#{stuSex},#{clazz.clsId})
+	</insert>
+	
+	<delete id="deleteStudent" parameterType="Integer">
+		delete from student where stuId=#{stuId}
+	</delete>
+	
+	<update id="updateStudent" parameterType="student">
+		update student set stuName=#{stuName},stuAge=#{stuAge},stuSex=#{stuSex},clsId=#{clazz.clsId} where stuId=#{stuId}
+	</update>
+
+</mapper>

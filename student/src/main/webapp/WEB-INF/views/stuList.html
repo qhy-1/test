@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="layui/css/layui.css" />
+<script type="text/javascript" src="layui/layui.all.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/student.js"></script>
+</head>
+<body>
+	<h1>Student List</h1>
+	<button type="button" class="layui-btn layui-btn-sm" id="add"
+		style="margin: 10px">增加</button>
+
+	<table class="layui-hide" id="table" lay-filter="demo"></table>
+
+	<script type="text/html" id="barDemo">
+            <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+     </script>
+
+	<!-- 增加学生 -->
+	<form class="layui-form" action="" id="add_form" style="display: none">
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">姓名：</label>
+			<div class="layui-input-inline">
+				<input type="text" name="addstuName" required lay-verify="required"
+					placeholder="请输入学生姓名" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">性别：</label>
+			<div class="layui-input-line">
+				<input type="radio" name="addstuSex" lay-filter="erweima" value="男"
+					title="男"> <input type="radio" name="addstuSex"
+					lay-filter="erweima" value="女" title="女" checked>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">年龄：</label>
+			<div class="layui-input-inline">
+				<input type="text" name="addstuAge" required lay-verify="required"
+					placeholder="请输入年龄" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label"><span class="f_orange"></span>所在班级：</label>
+			<div class="layui-input-inline width_250 pos-r">
+				<select name="classSelect" id="selectId"
+					lay-verify="required">
+					<option value=""></option>
+				</select>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit lay-filter="add_formDemo">立即提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</div>
+	</form>
+	
+	<!-- 修改 -->
+	<form class="layui-form" id="edit_form" style="display: none;">
+		<input type="hidden" name="stuId" id="stuId">
+		<div class="layui-form-item">
+			<label class="layui-form-label">学生姓名：</label>
+			<div class="layui-input-inline">
+				<input type="text" name="stuName" id="stuName" required
+					lay-verify="required" placeholder="请输入学生姓名" autocomplete="off"
+					class="layui-input">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">性别：</label>
+			<div class="layui-input-line">
+				<input type="radio" name="stuSex" lay-filter="erweima"
+					value="男" title="男"> <input type="radio" name="stuSex"
+					lay-filter="erweima" value="女" title="女">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">年龄：</label>
+			<div class="layui-input-inline">
+				<input type="text" name="stuAge" id="stuAge" required
+					lay-verify="required" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label"><span class="f_orange"></span>所在班级：</label>
+			<div class="layui-input-inline width_250 pos-r">
+				<select name="classId" id="selectId2" lay-verify="required">
+					<option value=""></option>
+				</select>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</div>
+	</form>
+
+</body>
+</html>
